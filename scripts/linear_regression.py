@@ -1,32 +1,25 @@
 import numpy as np
 
 class LinearRegressionGD:
-    def __init__(self, learning_rate=0.01, epochs=1000):
+    def __init__(self, learning_rate=0.01, n_iter=100):
         self.learning_rate = learning_rate
-        self.epochs = epochs
-        self.weights = None
-        self.bias = None
-    
-    def fit(self, X, y):
-        """
-        Train the model using Gradient Descent.
-        """
-        n_samples, n_features = X.shape
-        self.weights = np.zeros(n_features)
-        self.bias = 0
+        self.n_iter = n_iter
+        self.costs = []  # Store the cost function values per epoch
 
-        for _ in range(self.epochs):
-            y_pred = np.dot(X, self.weights) + self.bias
-            dw = (1/n_samples) * np.dot(X.T, (y_pred - y))
-            db = (1/n_samples) * np.sum(y_pred - y)
-            
-            self.weights -= self.learning_rate * dw
-            self.bias -= self.learning_rate * db
-    
+    def fit(self, X, y):
+        self.theta = np.zeros(X.shape[1])
+        m = len(y)
+
+        for _ in range(self.n_iter):
+            y_pred = X.dot(self.theta)  # Compute predictions
+            error = y_pred - y
+            cost = (1 / (2 * m)) * np.sum(error ** 2)  # Compute cost function
+            self.costs.append(cost)  # Append cost for plotting
+
+            gradient = (1 / m) * X.T.dot(error)  # Compute gradient
+            self.theta -= self.learning_rate * gradient  # Update theta
     def predict(self, X):
-        if self.weights is None or self.bias is None:
-            raise ValueError("Model has not been trained yet. Call `fit()` before `predict()`.")
-        return np.dot(X, self.weights) + self.bias
+        return np.dot(X, self.theta)
 
     def mse(self, y_true, y_pred):
         """
