@@ -1,0 +1,85 @@
+
+Workspace Structure (initial):
+  Assignment 2.pdf           # Full assignment specification
+  Dataset(soil images)/      # Soil image patches
+  spec.txt                   # Brief assignment requirements
+
+Create two folders only:
+  doc/       # For all written documentation (Task 1 and Task 2 reports)
+  notebook/  # For Jupyter notebook and supporting code
+
+Steps:
+
+1. Prepare directory structure
+   cd assignment2-3092017-ML
+   mkdir doc notebook
+
+2. Review assignment requirements
+   - Read spec.txt and Assignment 2.pdf
+   - Confirm citation style (APA or IEEE)
+
+3. Task 1: Literature Review (30%)
+   - Create doc/Task1_LiteratureReview.txt
+     • Title: Task 1: Soil-Type Identification via Satellite Imagery
+     • Sections:
+       1. Introduction: problem definition and applications
+       2. Recent Work (2019–2025): summarize ≥6 peer-reviewed studies
+          - Data sources (Sentinel‑2, Landsat, hyperspectral)
+          - Methods (RF, SVM, CNN, hybrids)
+          - Performance metrics (accuracy, R², RMSE)
+       3. Comparison & Contrast: pros/cons of each approach
+       4. Reflection & Future Directions: trends, gaps, recommendations
+       5. References: formatted APA or IEEE
+   - Export final version to PDF: Task1_LiteratureReview.pdf
+
+4. Task 2: CNN-Based Classification (70%)
+
+4.1 Notebook (notebook/)
+   - Create notebook/Task2_CNN_Notebook.ipynb
+     Sections:
+       0. Environment & Imports (os, numpy, matplotlib, tensorflow.keras)
+       1. Data Exploration & Pre-processing (20%)
+          - Load images from ../Dataset(soil images)/
+          - Visualize samples and class distribution
+          - Normalization and augmentation pipeline
+       2. Model Definition (40%)
+          - Build an RGB CNN baseline (Conv2D, MaxPooling, Dense)
+          - (Optional) Extend to multispectral (13-channel input)
+          - Display model.summary()
+       3. Training & Optimization
+          - Compile (optimizer, loss), fit for ≥20 epochs
+          - Plot training/validation accuracy and loss
+       4. Evaluation & Analysis
+          - Compute accuracy, precision, recall, F1 score
+          - Generate and plot confusion matrix
+          - (Optional) Ablation study or feature visualization
+       5. Save Model
+          - model.save('saved_model/rgb_cnn')
+
+4.2 Written Report (doc/)
+   - Create doc/Task2_CNN_Report.txt
+     Outline:
+       1. Introduction & Related Work (link to Task 1 findings)
+       2. Data Description & Pre-processing
+       3. Model Architecture & Justification
+       4. Training Strategy & Hyperparameters
+       5. Results & Analysis (RGB vs multispectral, confusion matrix)
+       6. Limitations & Future Work
+       7. References
+   - Keep under 10 pages (double-spaced, 12pt font)
+   - Export to PDF: Task2_CNN_Report.pdf
+
+5. Final Verification
+   - Ensure folder contents:
+       doc/
+         Task1_LiteratureReview.pdf
+         Task2_CNN_Report.pdf
+       notebook/
+         Task2_CNN_Notebook.ipynb
+       Dataset(soil images)/
+       spec.txt
+       Assignment 2.pdf
+   - Run notebook end-to-end without errors
+   - Check citations and page limits
+
+end 

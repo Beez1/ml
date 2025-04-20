@@ -1,0 +1,43 @@
+
+1
+Machine Learning 
+Assignment 21 
+40% of the module 
+Due on Sunday 27/04 at 23:59 
+Task 1 (30%) 
+You should do a literature review on the following topic:  
+Soil type identification using satellite images 
+In this task you should use recent references that address this topic, you will need to compare 
+the various sources and contrast the approaches and the results and finally to reflect on the 
+overall findings. 
+Submission: 
+1. Documentation (2-3 pages) 
+ 
+Task 2 (70%) 
+In this task you will use Deep Learning (DL) to perform a task of your choice (classification, 
+regression, sequence prediction). Your task should involve using a DL model that we studied in 
+this course (MLP, CNN, RNN, ...) 
+Notes: 
+- You need to select a dataset that will lend itself to a good understanding. 
+- The identified problem should be of a real application. 
+- Chosen dataset should be challenging and still under investigation. 
+Submission: 
+1. Python code (notebook) for your working (it should show your outputs) 
+2. Documentation which should describe all your working, approaches and justifications 
+(use figures, tables, code snippets as appropriate)  
+Marking scheme: 
+Data Exploration and Pre-
+processing 
+20% Data analysis/cleaning, handling data quality 
+issues (if any) 
+Task (classifier, regression, ..) 
+development and testing 
+40% Model selection, training, optimisation, and 
+evaluation (including results) 
+Documentation 40% It should not exceed 10 pages. It should have 
+introduction with related work, discussion of the 
+data, justification for the chosen model, discussion 
+on developing, training, testing and evaluating the 
+model. Discussion of the results. 
+ 
+ 1 Edited by Abubakr Siddig on 18.03.2025 

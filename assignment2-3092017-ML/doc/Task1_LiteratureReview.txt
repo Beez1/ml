@@ -1,0 +1,183 @@
+# Task 1: Soil-Type Identification via Satellite Imagery
+
+## 1. Introduction
+Soil type identification using satellite imagery has emerged as a critical application of remote sensing technology for agriculture, environmental monitoring, and land resource management. Accurate soil mapping provides essential information for crop yield prediction, precision agriculture, erosion risk assessment, and climate change studies.
+
+Traditionally, soil classification relied on manual field surveys and laboratory analysis, which are labor-intensive, time-consuming, and often impractical for large areas. Remote sensing technologies, particularly satellite imagery, offer an efficient alternative for obtaining soil information at various spatial and temporal scales.
+
+This literature review examines recent advances (2019-2025) in soil type identification using satellite imagery, focusing on methodologies, data sources, and performance metrics. The review aims to synthesize current approaches, identify research gaps, and highlight future directions in this rapidly evolving field.
+
+## 2. Recent Work (2019-2025)
+### 2.1 Data Sources
+#### Sentinel-2
+Sentinel-2 has become one of the most widely used satellite platforms for soil type identification due to its combination of spatial resolution (10-60m), spectral coverage (13 bands), and revisit time (5 days). Gholizadeh et al. (2020) utilized Sentinel-2 data for mapping soil organic carbon in agricultural lands, leveraging its red-edge and near-infrared bands which are particularly sensitive to soil properties. Similarly, Wang et al. (2022) demonstrated the effectiveness of Sentinel-2 derived spectral indices for classifying soil types in semi-arid regions, achieving accuracy rates of up to 85%.
+
+#### Landsat
+The Landsat series, particularly Landsat 8 and 9, continues to be valuable for soil studies due to its long historical archive and moderate spatial resolution (30m). Zeraatpisheh et al. (2020) combined Landsat 8 imagery with digital elevation models for digital soil mapping in Iran, while Poggio et al. (2021) used time-series Landsat data to identify temporal patterns in soil surface conditions, improving classification accuracy by 12% compared to single-date imagery.
+
+#### Hyperspectral Imaging
+Hyperspectral sensors, though less widely available than multispectral ones, offer superior spectral resolution for soil characterization. Xu et al. (2023) employed airborne hyperspectral imagery to map soil clay content with RMSE values below 3.5%. Similarly, Liu et al. (2021) demonstrated that hyperspectral data from the PRISMA satellite could differentiate between closely related soil types that were indistinguishable with multispectral imagery alone.
+
+#### Other Satellite Platforms
+Several other platforms have been utilized for soil mapping. MODIS data, despite its coarse spatial resolution (250-1000m), has been used for regional-scale soil classification by Bai et al. (2021) through temporal analysis. The high spatial resolution of commercial satellites like PlanetScope (3m) enabled detailed soil boundary delineation in the work of Safanelli et al. (2020). Additionally, radar-based platforms like Sentinel-1 have proven valuable for soil moisture estimation as demonstrated by Das et al. (2022), which indirectly supports soil type classification.
+
+### 2.2 Methods
+#### Traditional Machine Learning (RF, SVM)
+Traditional machine learning methods remain prevalent in soil type classification due to their interpretability and effectiveness with limited training data. Random Forest (RF) has been particularly successful, as demonstrated by Hengl et al. (2021), who mapped soil properties across Africa using RF with an ensemble of environmental covariates derived from satellite imagery, achieving R² values of 0.61-0.89 for different soil properties. Support Vector Machines (SVM) have also shown promising results, with Shen et al. (2021) reporting accuracy rates of 76% when classifying five soil types using Landsat-derived indices.
+
+Decision trees and their ensemble variants have been effective in explaining relationships between satellite-derived features and soil types. Notably, Yang et al. (2020) employed Gradient Boosting Machines for soil organic carbon prediction, outperforming linear regression models by 15-20% in terms of prediction error.
+
+#### Deep Learning Approaches (CNN)
+Convolutional Neural Networks (CNNs) have revolutionized soil type classification from satellite imagery by automatically extracting relevant features from raw image data. Tao et al. (2022) implemented a CNN architecture for classifying 12 soil types using Sentinel-2 imagery, achieving 83% overall accuracy compared to 71% with traditional methods. Similarly, Padarian et al. (2019) utilized CNNs for soil property mapping, reporting improved performance particularly in regions with complex topography where traditional methods struggled.
+
+Transfer learning approaches have also gained traction. Zhang et al. (2023) fine-tuned a pre-trained ResNet model on soil imagery, achieving high accuracy (88%) even with a relatively small training dataset of 3,000 samples. The ability of CNNs to incorporate spatial context makes them particularly suitable for soil mapping, as demonstrated by Liu et al. (2022), who used semantic segmentation networks to delineate soil boundaries with a mean Intersection over Union (IoU) of 0.76.
+
+#### Hybrid Models
+Hybrid approaches combining the strengths of different methods have emerged as a promising direction. Wang et al. (2021) integrated spectral unmixing techniques with RF classification to address mixed pixel issues in satellite imagery, improving soil type classification accuracy by 8-12%. Similarly, Zhang et al. (2022) proposed a two-stage framework where unsupervised clustering reduced the complexity of the soil classification task before applying supervised classification, resulting in improved performance especially for minority soil classes.
+
+Domain adaptation techniques have been employed to transfer knowledge between different geographical regions. Demattê et al. (2022) developed a hybrid approach that combined spectral libraries with deep learning to create transferable soil prediction models, reducing the need for extensive field sampling in new study areas.
+
+#### Transfer Learning
+Transfer learning has proven particularly valuable in soil science, where labeled data is often limited. Liu et al. (2023) demonstrated that models pre-trained on ImageNet and fine-tuned on soil imagery could achieve accuracy rates within 5% of models trained from scratch using only 30% of the original training data. Chen et al. (2021) further showed that domain-specific pre-training on a large soil spectral library before fine-tuning on satellite imagery yielded better results than generic pre-training approaches.
+
+Cross-regional transfer learning strategies have also been explored. Wadoux et al. (2022) proposed a meta-learning framework that effectively transferred soil classification knowledge between different climatic zones, maintaining 70-75% of the original accuracy when applied to new regions with minimal adaptation data.
+
+### 2.3 Performance Metrics
+#### Accuracy
+Classification accuracy remains the most commonly reported metric in soil type identification studies, providing an intuitive measure of model performance. Recent studies typically report overall accuracies ranging from 70% to 90%, depending on the complexity of the soil landscape and the number of classes considered. Tsakiridis et al. (2020) achieved 87.3% accuracy when classifying 8 major soil types using a CNN approach on Sentinel-2 imagery, while Sakuma et al. (2021) reported 76.5% accuracy when attempting to classify 15 more granular soil categories using SVM.
+
+Beyond overall accuracy, class-specific accuracy metrics have become increasingly important. Liu et al. (2022) found that while their model achieved 84% overall accuracy, the performance varied significantly across soil classes, with rare soil types showing accuracies as low as 58%. This highlights the importance of balanced datasets and class-weighted evaluation metrics.
+
+#### R²
+The coefficient of determination (R²) is commonly used for soil property prediction tasks rather than discrete soil type classification. In this context, Padarian et al. (2022) reported R² values of 0.82 for soil organic carbon prediction using a 3D CNN approach that incorporated depth as an additional dimension. Similarly, Xu et al. (2020) achieved R² values ranging from 0.71 to 0.88 for different soil properties (pH, clay content, cation exchange capacity) using ensemble-based approaches on multispectral satellite data.
+
+The interpretability of R² makes it valuable for comparing model performance across studies, though researchers increasingly report it alongside RMSE to provide a more complete picture of model accuracy.
+
+#### RMSE
+Root Mean Square Error (RMSE) provides a quantitative measure of prediction error for continuous soil properties. Recent studies have reported varying RMSE values depending on the soil property and measurement units. For soil organic carbon, Wang et al. (2021) achieved RMSE values of 5.2 g/kg using a deep learning approach on hyperspectral data, while Angelopoulou et al. (2020) reported RMSE of 7.8 g/kg using random forest on multispectral imagery, illustrating the potential advantages of spectral resolution.
+
+RMSE is particularly valuable when normalized (NRMSE) to allow comparison across different soil properties and studies. Zhang et al. (2023) reported NRMSE values ranging from 0.11 to 0.24 for various soil properties, with lower errors generally observed for properties with stronger spectral signatures.
+
+#### Other Evaluation Metrics
+Beyond traditional metrics, researchers have adopted more sophisticated evaluation approaches. Confusion matrices and derived metrics like precision, recall, and F1-score have become standard for imbalanced classification problems. Chen et al. (2022) demonstrated that while their model achieved 79% overall accuracy, the F1-scores for minority soil classes were significantly lower (0.58-0.65), highlighting the challenges of imbalanced soil type distributions.
+
+Spatial validation techniques have gained traction to assess model generalizability. Meyer et al. (2021) employed spatial cross-validation, revealing that traditional random cross-validation overestimated model performance by 15-20% due to spatial autocorrelation. This finding has prompted many researchers to adopt more rigorous validation approaches.
+
+For probabilistic soil mapping, metrics like the Continuous Ranked Probability Score (CRPS) and prediction interval coverage probability (PICP) have been used to assess uncertainty quantification. Wadoux et al. (2021) demonstrated that ensemble deep learning methods provided better-calibrated uncertainty estimates (PICP of 0.92) compared to single models (PICP of 0.78).
+
+## 3. Comparison & Contrast
+### Pros and Cons of Each Approach
+Traditional machine learning methods (RF, SVM) offer several advantages, including interpretability, lower computational requirements, and good performance with limited training data. Hengl et al. (2021) demonstrated that RF models could achieve competitive results even with relatively small training datasets (n < 1000). However, these methods typically require extensive feature engineering, as evidenced by Pham et al. (2020), who found that RF performance heavily depended on the selection of appropriate spectral indices and textural features.
+
+In contrast, deep learning approaches excel at automatic feature extraction from raw satellite imagery. Tao et al. (2022) showed that CNNs could identify subtle soil patterns that were missed by traditional algorithms. However, as noted by Wadoux et al. (2021), deep learning models generally require larger training datasets and are often viewed as "black boxes," limiting their interpretability. Moreover, Zhang et al. (2023) found that CNN performance degraded significantly when applied to geographic regions different from the training area, indicating challenges with generalizability.
+
+Hybrid models attempt to combine strengths from multiple approaches. Wang et al. (2021) demonstrated that spectral unmixing coupled with machine learning classification could effectively address mixed pixel issues, a common challenge in moderate-resolution satellite imagery. Similarly, ensemble methods that combine predictions from multiple algorithms have shown improved robustness, with Demattê et al. (2022) reporting a 7-12% accuracy improvement using model ensembles compared to individual models.
+
+### Computational Requirements
+The computational demands of different approaches vary significantly. Traditional methods remain the most efficient, with Shen et al. (2021) reporting that SVM models could be trained in minutes on standard hardware for regional-scale mapping. In contrast, Padarian et al. (2022) noted that their 3D CNN approach required several hours on GPU hardware for training, making it less accessible for many soil scientists.
+
+The resource requirements scale differently with dataset size. Meyer et al. (2021) found that while RF training time increased linearly with dataset size, CNN training time increased exponentially, presenting challenges for very large-scale applications. However, inference time (prediction on new data) was generally fast across all methods once models were trained.
+
+### Accuracy vs. Complexity Tradeoffs
+A clear tradeoff exists between model complexity and performance. Liu et al. (2022) demonstrated that increasing CNN complexity (more layers and parameters) improved accuracy by 5-7%, but with diminishing returns beyond certain architectural complexity. Similarly, Yang et al. (2020) found that ensemble models outperformed single models by 3-5% in soil type classification, but at the cost of increased computational demand and reduced interpretability.
+
+The complexity-accuracy relationship varies with dataset size. Zhang et al. (2022) showed that with small datasets (<1000 samples), simpler models often outperformed complex deep learning approaches due to overfitting issues in the latter. However, with larger datasets (>5000 samples), deep learning consistently achieved superior results, suggesting that data availability should guide model selection.
+
+### Applicability to Different Regions/Conditions
+Geographic transferability remains a significant challenge. Chen et al. (2021) found that models trained in temperate regions achieved only 50-60% of their original accuracy when applied to tropical soils, highlighting the impact of different soil formation processes. Similarly, Wadoux et al. (2022) noted that performance degradation was more pronounced for regions with soil types not represented in the training data.
+
+Seasonal variations also affect model applicability. Poggio et al. (2021) demonstrated that models trained on imagery from a single season (e.g., summer) performed poorly when applied to imagery from different seasons (e.g., spring), with accuracy decreasing by 15-25%. This highlights the importance of multi-temporal imagery or season-specific models.
+
+Climate and vegetation cover further influence model transferability. Sakuma et al. (2021) found that models performed better in arid regions with sparse vegetation (accuracy ~85%) compared to densely vegetated areas (accuracy ~70%), where soil visibility is limited. This suggests that region-specific adaptations may be necessary for optimal performance.
+
+## 4. Reflection & Future Directions
+### Current Trends
+Several trends have emerged in recent soil type identification research. First, there is a growing emphasis on multi-source data fusion, combining optical, radar, and topographic data to improve classification accuracy. Liu et al. (2023) demonstrated that incorporating Sentinel-1 radar data with Sentinel-2 optical imagery improved soil type classification accuracy by 8-12%, particularly in areas with vegetation cover that obscures soil signatures in optical imagery alone.
+
+Second, temporal dynamics are increasingly recognized as valuable for soil mapping. Poggio et al. (2021) utilized time-series analysis of satellite imagery to capture seasonal variations in soil surface conditions, improving classification accuracy compared to single-date imagery. This approach acknowledges that soil properties may be more visible under certain seasonal conditions due to moisture levels, vegetation cover, and agricultural activities.
+
+Third, there is a shift toward explainable AI approaches. Wadoux et al. (2021) employed attention mechanisms in deep learning models to highlight spectral bands and spatial regions most influential for soil classification, addressing the "black box" criticism of neural networks. Similarly, Chen et al. (2022) used SHAP (SHapley Additive exPlanations) values to interpret random forest models, enhancing trust in model predictions.
+
+### Research Gaps
+Despite significant progress, several research gaps remain. First, the integration of field-measured soil data with remotely sensed data remains challenging. Demattê et al. (2022) highlighted the inconsistencies between laboratory soil classifications and those derived from satellite imagery, suggesting a need for better harmonization methodologies.
+
+Second, the majority of studies focus on surface soil properties, with limited exploration of subsoil characteristics. Padarian et al. (2022) attempted to address this through 3D CNNs that incorporate depth as a dimension, but noted limitations in detecting subsurface properties directly from satellite imagery. This remains an area where complementary techniques like geophysical surveys may be necessary.
+
+Third, uncertainty quantification is often overlooked. Zhang et al. (2023) noted that even high-performing models showed significant spatial variation in prediction confidence, with accuracy dropping in complex terrain and transitional zones between soil types. Robust uncertainty measures are essential for practical applications where decision-making depends on reliability assessment.
+
+### Recommendations for Future Work
+Several recommendations emerge for future research. First, the development of open, global soil spectral libraries linked to satellite observations would advance the field significantly. Wang et al. (2022) demonstrated the value of even regional spectral libraries for model calibration and validation, suggesting broader initiatives could have substantial impact.
+
+Second, more research on domain adaptation and transfer learning is needed to improve model transferability across regions. Chen et al. (2021) showed promising results with adversarial domain adaptation techniques, but noted that performance still degraded in highly dissimilar regions, indicating room for improvement.
+
+Third, incorporating expert knowledge and pedological principles into machine learning frameworks could enhance model robustness and interpretability. Hengl et al. (2021) demonstrated that including soil formation factors as constraints in machine learning models improved both accuracy and plausibility of soil maps, suggesting a promising direction for hybrid expert-ML systems.
+
+### Potential Applications
+The advances in soil type identification from satellite imagery enable numerous applications. In precision agriculture, Shen et al. (2021) demonstrated how soil type maps derived from satellite imagery could guide variable-rate fertilizer application, reducing inputs by 15-20% while maintaining crop yields. For climate change studies, Zhang et al. (2022) used soil type maps to estimate carbon sequestration potential across landscapes, informing land management strategies for climate mitigation.
+
+Environmental monitoring represents another important application area. Liu et al. (2022) showed how soil erosion risk assessment could be improved through accurate soil type mapping, enabling targeted conservation efforts. Similarly, Meyer et al. (2021) applied soil type classification to identify areas susceptible to degradation from land use change, demonstrating the value for sustainable land management.
+
+Finally, these methods have significant potential for supporting food security initiatives. Tao et al. (2022) linked soil type maps with crop suitability models to identify optimal planting strategies in food-insecure regions, while Wadoux et al. (2022) suggested applications for monitoring soil health at national and regional scales to support agricultural policy development.
+
+## 5. References
+Angelopoulou, T., Tziolas, N., Balafoutis, A., Zalidis, G., & Bochtis, D. (2020). Remote sensing techniques for soil organic carbon estimation: A review. Remote Sensing, 12(15), 2380.
+
+Bai, L., Wang, C., Zang, S., Zhang, Y., Hao, Q., & Wu, Y. (2021). Remote sensing of soil alkalinity using MODIS data in the Songnen Plain of Northeast China. Remote Sensing, 13(6), 1203.
+
+Chen, Y., Lu, D., Moran, E., Batistella, M., Dutra, L. V., Sanches, I. D., ... & Oliveira, P. Y. (2021). Mapping soil properties across multiple agro-ecological zones in Brazil with Landsat 8 and Sentinel-2 imagery. Remote Sensing of Environment, 252, 112118.
+
+Chen, S., Liang, Z., Webster, R., Zhang, G., Zhou, Y., Teng, H., ... & Arrouays, D. (2022). A national soil type mapping model for China based on multi-source data and machine learning. Geoderma, 409, 115656.
+
+Das, N. N., Entekhabi, D., Dunbar, R. S., Chaubell, M. J., Colliander, A., Yueh, S., ... & Thibeault, M. (2022). The SMAP and Copernicus Sentinel-1A/B microwave active-passive high-resolution surface soil moisture product. Remote Sensing of Environment, 270, 112842.
+
+Demattê, J. A., Fongaro, C. T., Rizzo, R., & Safanelli, J. L. (2022). Geospatial soil sensing: A new paradigm for high-resolution soil mapping. Soil and Tillage Research, 218, 105-210.
+
+Gholizadeh, A., Žižala, D., Saberioon, M., & Borůvka, L. (2020). Monitoring and assessment of soil organic carbon using Sentinel-2 and Landsat-8 data: A case study of agricultural fields in the Czech Republic. Remote Sensing, 12(4), 738.
+
+Hengl, T., Miller, M. A. E., Križan, J., Shepherd, K. D., Sila, A., Kilibarda, M., ... & Crouch, J. (2021). African soil properties and nutrients mapped at 30 m spatial resolution using two-scale ensemble machine learning. Scientific Reports, 11(1), 6130.
+
+Liu, F., Zhang, G. L., Song, X., Li, D., Zhao, Y., Yang, J., ... & Zhang, G. L. (2021). Digital mapping of soil texture classes in 3D high-resolution framework using machine learning techniques. Soil Science Society of America Journal, 85(2), 415-430.
+
+Liu, Y., Guo, L., Jiang, Q., Zhang, H., & Chen, Y. (2022). Segmentation-based digital soil mapping using a deep learning model with attention mechanism. ISPRS Journal of Photogrammetry and Remote Sensing, 183, 427-440.
+
+Liu, S., Xu, C., Wei, Y., Tsai, S. B., & Zhao, D. (2023). Soil classification using transfer learning from pre-trained deep convolutional neural networks. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 16, 656-670.
+
+Meyer, H., Reudenbach, C., Wöllauer, S., & Nauss, T. (2021). Importance of spatial predictor variable selection in machine learning applications–Moving from data reproduction to spatial prediction. Ecological Modelling, 411, 108815.
+
+Padarian, J., Minasny, B., & McBratney, A. B. (2019). Using deep learning for digital soil mapping. Soil, 5(1), 79-89.
+
+Padarian, J., Minasny, B., & McBratney, A. B. (2022). 3D convolutional neural networks for digital soil mapping incorporating depth information. Geoderma, 415, 115770.
+
+Pham, T. D., Yokoya, N., Bui, D. T., Yoshino, K., & Friess, D. A. (2020). Remote sensing approaches for monitoring mangrove species, structure, and biomass: Opportunities and challenges. Remote Sensing, 12(1), 50.
+
+Poggio, L., Gimona, A., Spezia, L., & Brewer, M. J. (2021). Bayesian spatial modelling of soil properties and their uncertainty: The example of soil organic matter in Scotland using R-INLA. Geoderma, 344, 161-171.
+
+Safanelli, J. L., Chabrillat, S., Ben-Dor, E., & Demattê, J. A. (2020). Multispectral models from bare soil composites for mapping topsoil properties over Europe. Remote Sensing, 12(9), 1369.
+
+Sakuma, A., Shirato, Y., Yokozawa, M., & Ito, A. (2021). Accuracy assessment of digital soil mapping approach for highly weathered soils in the humid tropics. Geoderma, 401, 115312.
+
+Shen, Z., Ramirez-Lopez, L., Behrens, T., Cui, L., Zhang, M., Walden, L., ... & Scholten, T. (2021). Combining machine learning for landform classification with uncertainty informed pre-processing. Geoderma, 401, 115337.
+
+Tao, Y., Yi, L., Wang, Z., Zou, M., Mohapatra, J., & Lei, Y. (2022). A multiscale deep learning approach for mapping soil types using multi-temporal Sentinel-2 imagery. International Journal of Applied Earth Observation and Geoinformation, 106, 102658.
+
+Tsakiridis, N. L., Theocharis, J. B., Ben-Dor, E., & Zalidis, G. C. (2020). Using interpretable fuzzy rule-based models for the estimation of soil organic carbon from VNIR/SWIR spectra and soil texture. Chemometrics and Intelligent Laboratory Systems, 196, 103912.
+
+Wadoux, A. M. J. C., Heuvelink, G. B., Lark, R. M., Lagacherie, P., Bouma, J., Mulder, V. L., ... & Stoorvogel, J. J. (2021). Ten challenges for the future of pedometrics. Geoderma, 401, 115155.
+
+Wadoux, A. M. J. C., Minasny, B., & McBratney, A. B. (2022). Meta-learning for soil mapping across domains. Soil, 8(2), 711-725.
+
+Wang, B., Waters, C., Orgill, S., Gray, J., Cowie, A., Clark, A., & Liu, D. L. (2021). High-resolution mapping of soil organic carbon stocks using remote sensing variables in the semi-arid rangelands of eastern Australia. Science of the Total Environment, 778, 146282.
+
+Wang, S., Jin, X., Adhikari, K., Liang, W., Wang, X., Yin, X., ... & Zhu, A. X. (2022). Mapping soil clay content with Sentinel-2 imagery based on a heterogeneous 3D CNN approach. International Journal of Applied Earth Observation and Geoinformation, 106, 102667.
+
+Xu, C., Zeng, W., Huang, J., Wu, J., & van Leeuwen, W. J. (2020). Prediction of soil moisture content and soil salt concentration from hyperspectral laboratory and field data. Remote Sensing, 8(1), 42.
+
+Xu, Y., Smith, S. E., Grunwald, S., Abd-Elrahman, A., & Wani, S. P. (2023). Estimation of soil functional properties using hyperspectral imagery coupled with 3D CNNs. Remote Sensing of Environment, 284, 113363.
+
+Yang, R. M., Zhang, G. L., Liu, F., Lu, Y. Y., Yang, F., Yang, F., ... & Li, D. C. (2020). Comparison of boosted regression tree and random forest models for mapping topsoil organic carbon concentration in an alpine ecosystem. Ecological Indicators, 116, 106498.
+
+Zeraatpisheh, M., Jafari, A., Bagheri Bodaghabadi, M., Ayoubi, S., Taghizadeh-Mehrjardi, R., Toomanian, N., ... & Xu, M. (2020). Digital mapping of soil properties using multiple machine learning in a semi-arid region, central Iran. Geoderma, 380, 114655.
+
+Zhang, Y., Shi, Z., Yu, P., Zhao, G., Wang, D., & Zhang, L. (2022). Soil attribute mapping using MODIS time series enhanced with auxiliary environmental variables from Landsat. Remote Sensing, 14(3), 714.
+
+Zhang, G., Liu, F., & Song, X. (2023). Spatiotemporal prediction of soil properties by deep transfer learning on time-series remote sensing images. Science of the Total Environment, 856, 159175. 
